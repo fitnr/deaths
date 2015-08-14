@@ -5,18 +5,15 @@
 
 # Converting the deaths to sqlite3
 
-1. Expect the current directory to grow to ~22GB.
-1. Put all the zipped death files into the `data` dir.
-   1. `sqlite3 deaths.db < 1_setup_deaths_db.sql`
+Expect the current directory to grow to ~22GB.
+
+````bash
+$ make
+````
+
+This will:
+1. Download the (very large) data files from http://cancelthesefunerals.com/ into the data dir
+1. Create a `deaths.db` sqlite database
 1. Convert the data (takes a while)
-   1. `./zips2sql.sh > deaths.sql`
-   1. OR, if you like PV; `./zips2sql.sh |pv -s 9g > deaths.sql`
-1. Actually import the deaths
-   1. `sqlite3 deaths.db < deaths.sql`
-1. Run all the indexes/virtual table stuff
-   1. `sqlite3 < 2_index_deaths.sql`
-
-
-   
-   
-   
+1. Import the deaths into `deaths.db`
+1. Run indexes and virtual table stuff
